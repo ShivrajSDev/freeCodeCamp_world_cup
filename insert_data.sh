@@ -28,13 +28,12 @@ do
       WINNING_TEAM=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER';")
     fi
     
-
     # get opponent
     OPPOSING_TEAM=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT';")
     # if not found
     if [[ -z $OPPOSING_TEAM ]]
     then
-      # insert opponsing team into teams
+      # insert opposing team into teams
       OPPOSING_TEAM_RESULT=$($PSQL "INSERT INTO teams (name) VALUES ('$OPPONENT')")
       if [[ $OPPOSING_TEAM_RESULT == "INSERT 0 1" ]]
       then
